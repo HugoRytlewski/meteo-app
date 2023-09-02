@@ -34,7 +34,7 @@ async function getMeteo() {
   <div class="md:p-0">
   <div class="flex flex-col items-center mt-10 gap-10">
     <div class="flex">
-    <input v-model="ville" type="text" placeholder="Entrez votre ville" class=" md:w-80 text-center">
+    <input v-model="ville" type="text" placeholder="Entrez votre ville" class="border border-white border-4 p-4  md:w-80 text-center">
     <button class=" border border-white border-4 p-4  bg-neutral-800 text-white " @click="getMeteo">Valider</button>
   </div>
   
