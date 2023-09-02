@@ -8,6 +8,9 @@ const nomVille = ref('');
 const temp = ref('');
 const description = ref('');
 const icon = ref('');
+const maxtemp = ref('');
+const mintemp = ref('');
+
 
 onMounted(() => {
   getMeteo();
@@ -21,9 +24,13 @@ async function getMeteo() {
   try {
     const response = await axios.get(apiUrl);
     temp.value = (parseInt(response.data.main.temp)) + '°C';
+    mintemp.value = (parseInt(response.data.main.temp_min)) ;
+    maxtemp.value = (parseInt(response.data.main.temp_max)) ;
     description.value = response.data.weather[0].description;
     icon.value = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
     nomVille.value = response.data.name;
+    console.log(response.data);
+    
   } catch (error) {
     console.error('Une erreur s\'est produite lors de la récupération des données météo', error);
   }
@@ -32,21 +39,58 @@ async function getMeteo() {
 
 <template>
   <div class="md:p-0">
-  <div class="flex flex-col items-center mt-10 gap-10">
-    <div class="flex">
-    <input v-model="ville" type="text" placeholder="Entrez votre ville" class="border border-white border-4 p-4  md:w-80 text-center">
-    <button class=" border border-white border-4 p-4  bg-neutral-800 text-white " @click="getMeteo">Valider</button>
+    <div class="flex flex-col items-center mt-10 gap-10">
+      <div class="flex items-center ">
+        <input v-model="ville" type="text" placeholder="Entrez votre ville" class="border border-white border-4 p-4  md:w-80 text-center">
+        <button class=" border border-white border-4 p-4  bg-neutral-800 text-white " @click="getMeteo">Valider</button>
+      </div>
+      <div class="	h-72 mr-10 ml-10   duration-500	bg-neutral-800 p-16 card rounded-xl	 md:w-[32rem] flex flex-col justify-center items-center gap-5">
+        <h1 class="text-white text-5xl md:text-7xl  whitespace-normal text-center	">{{ nomVille }}</h1>
+        <p class="text-white text-5xl">{{ temp }}</p>
+        <div class="flex gap-6 mt-5"> 
+          <p>
+          <svg
+            class="text-white"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.0001 3.67157L13.0001 3.67157L13.0001 16.4999L16.2426 13.2574L17.6568 14.6716L12 20.3284L6.34314 14.6716L7.75735 13.2574L11.0001 16.5001L11.0001 3.67157Z"
+              fill="currentColor"
+            />
+          </svg>
+          <p class="text-white text-center">
+            {{ mintemp }}
+          </p>
+        </p>
+        <p>
+          <svg
+            class="text-white"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.6568 8.96219L16.2393 10.3731L12.9843 7.10285L12.9706 20.7079L10.9706 20.7059L10.9843 7.13806L7.75404 10.3532L6.34314 8.93572L12.0132 3.29211L17.6568 8.96219Z"
+              fill="currentColor"
+            />
+          </svg>
+          <p class="text-white text-center">
+            {{ maxtemp }}
+          </p>
+        </p>
+        </div>
+      </div>
+      <div class="bg-neutral-800 p-16 card rounded-xl	 md:w-96 h-10 flex flex-col justify-center items-center gap-1">
+        <img :src="icon" alt="Icone météo" class="">
+        <p class="text-white text-2xl">{{ description }}</p>
+      </div>
+    </div>
   </div>
-  
-  <div class="	 mr-10 ml-10  hover:scale-105 duration-500	bg-neutral-800 p-16 card rounded-xl	 md:w-[32rem] flex flex-col justify-center items-center gap-5">
-  <h1 class="text-white text-5xl md:text-7xl  whitespace-normal text-center	">{{ nomVille }}</h1>
-    <p class="text-white text-5xl">{{ temp }}</p>
-  </div>
-  <div class="bg-neutral-800 p-16 card rounded-xl	 md:w-96 h-10 flex flex-col justify-center items-center gap-1">
-    <img :src="icon" alt="Icone météo" class="">
-    <p class="text-white text-2xl">{{ description }}</p>
-  </div>
-  </div>
-</div>
 </template>
 
