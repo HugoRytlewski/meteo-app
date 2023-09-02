@@ -29,7 +29,6 @@ async function getMeteo() {
     description.value = response.data.weather[0].description;
     icon.value = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
     nomVille.value = response.data.name;
-    console.log(response.data);
     
   } catch (error) {
     console.error('Une erreur s\'est produite lors de la récupération des données météo', error);
