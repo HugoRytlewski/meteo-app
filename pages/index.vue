@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import Footer from '../components/Layouts/Footer.vue';
-import Modal from '../components/Layouts/modal.vue';
 
 
 const apiKey = '1c014d7470bc87a0ac57d62cc0cf852b';
@@ -14,6 +13,7 @@ const icon = ref('');
 const maxtemp = ref('');
 const mintemp = ref('');
 const humidity = ref('');
+const isSHOWmodal = ref(false);
 
 
 onMounted(() => {
@@ -35,6 +35,8 @@ async function getMeteo() {
     icon.value = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
     nomVille.value = response.data.name;
   } catch (error) {
+    isSHOWmodal.value = true;
+    ville.value = '';
     console.error('Une erreur s\'est produite lors de la récupération des données météo', error);
   }
 }
@@ -123,7 +125,8 @@ async function getMeteo() {
       
     </div>
     <Footer/>
-    <Modal/>
+   
+
 
     <div class="h-20 md:h-0">
 
@@ -131,5 +134,15 @@ async function getMeteo() {
   </div>
     
   </div>
+  <Transition>
+  <div v-if="isSHOWmodal" class="fixed inset-0 flex items-center justify-center p-10  ">
+        <div class="bg-neutral-900 text-white p-4 h-full md:h-96 md:w-96 flex justify-center gap-6 flex-col items-center rounded-xl  shadow-md">
+          <img  class="w-40" src="~/assets/img/error.gif" alt="">    
+            <p class="text-xl text-center">La ville saisie n'a pas été trouvée ou est incorrecte</p>
+            <button @click="isSHOWmodal=false" class="bg-white  rounded-xl text-black h-10 w-28 text-md">D'accord !</button>
+
+        </div>
+    </div>
+  </Transition>
 </template>
 
