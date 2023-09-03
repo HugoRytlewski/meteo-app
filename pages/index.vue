@@ -39,7 +39,7 @@ async function getMeteo() {
 </script>
 
 <template>
-  <div class="md:p-0">
+  <div class="md:p-0 md:flex md:items-center   min-h-screen md:justify-center">
     <div class="flex flex-col items-center mt-10 gap-10">
       <div class="flex items-center ">
         <input v-model="ville" type="text" placeholder="Entrez votre ville" class="border border-white border-4 p-4  md:w-80 text-center">
@@ -117,8 +117,36 @@ async function getMeteo() {
         <img :src="icon" alt="Icone météo" class="">
         <p class="text-white text-2xl">{{ description }}</p>
       </div>
+      
     </div>
+    <footer class="bg-neutral-900 md:w-[100rem] mt-30 translate-y-24 rounded-lg m-4 ">
+        <div class="w-screen-xl items-center p-4 flex flex-col md:flex-row md:justify-between">
+            <span class="text-md text-white sm:text-center ">© 2023 
+                <a class="">Météo Hugo, Tous droits réservés</a>
+        
+            </span>
+            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-white mr-0 gap-4 md:mr-16 sm:mt-0">
+                <li>
+                    <a href="https://www.linkedin.com/in/hugo-rytlewski-b06841281/">
+                    <img  class="w-6" src="~/assets/img/linkdinwhite.png" alt="">  
+                    </a>  
+                </li>
+                <li>
+                    <a href="https://github.com/HugoRytlewski">
+                        <img  class="w-6" src="~/assets/img/githubwhite.png" alt="">    
+                    </a>
+                </li>
+                
+            </ul>
+        
+        </div>
+        
+    </footer>
+    <div class="h-20 md:h-0">
+
+</div>
   </div>
+    
   </div>
 </template>
 
