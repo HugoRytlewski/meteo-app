@@ -1,6 +1,9 @@
 <script setup >
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
+import Footer from '../components/Layouts/Footer.vue';
+import Modal from '../components/Layouts/modal.vue';
+
 
 const apiKey = '1c014d7470bc87a0ac57d62cc0cf852b';
 const ville = ref('Limoges');
@@ -31,7 +34,6 @@ async function getMeteo() {
     humidity.value = response.data.main.humidity;
     icon.value = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
     nomVille.value = response.data.name;
-    console.log(response.data);
   } catch (error) {
     console.error('Une erreur s\'est produite lors de la récupération des données météo', error);
   }
@@ -118,30 +120,11 @@ async function getMeteo() {
         <p class="text-white text-2xl">{{ description }}</p>
       </div>
       
+      
     </div>
-    <footer class="bg-neutral-900 md:w-[100rem] mt-30 translate-y-24 rounded-lg m-4 ">
-        <div class="w-screen-xl items-center p-4 flex flex-col md:flex-row md:justify-between">
-            <span class="text-md text-white sm:text-center ">© 2023 
-                <a class="">Météo Hugo, Tous droits réservés</a>
-        
-            </span>
-            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-white mr-0 gap-4 md:mr-16 sm:mt-0">
-                <li>
-                    <a href="https://www.linkedin.com/in/hugo-rytlewski-b06841281/">
-                    <img  class="w-6" src="~/assets/img/linkdinwhite.png" alt="">  
-                    </a>  
-                </li>
-                <li>
-                    <a href="https://github.com/HugoRytlewski">
-                        <img  class="w-6" src="~/assets/img/githubwhite.png" alt="">    
-                    </a>
-                </li>
-                
-            </ul>
-        
-        </div>
-        
-    </footer>
+    <Footer/>
+    <Modal/>
+
     <div class="h-20 md:h-0">
 
 </div>
