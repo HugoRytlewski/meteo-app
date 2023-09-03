@@ -25,8 +25,8 @@ async function getMeteo() {
   try {
     const response = await axios.get(apiUrl);
     temp.value = (parseInt(response.data.main.temp)) + '°C';
-    mintemp.value = (parseInt(response.data.main.temp_min)) ;
-    maxtemp.value = (parseInt(response.data.main.temp_max)) ;
+    mintemp.value = (parseInt(response.data.main.temp_min))+ '°C' ;
+    maxtemp.value = (parseInt(response.data.main.temp_max))+ '°C' ;
     description.value = response.data.weather[0].description;
     humidity.value = response.data.main.humidity;
     icon.value = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
