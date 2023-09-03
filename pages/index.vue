@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup >
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
 
@@ -10,6 +10,7 @@ const description = ref('');
 const icon = ref('');
 const maxtemp = ref('');
 const mintemp = ref('');
+const humidity = ref('');
 
 
 onMounted(() => {
@@ -27,9 +28,10 @@ async function getMeteo() {
     mintemp.value = (parseInt(response.data.main.temp_min)) ;
     maxtemp.value = (parseInt(response.data.main.temp_max)) ;
     description.value = response.data.weather[0].description;
+    humidity.value = response.data.main.humidity;
     icon.value = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
     nomVille.value = response.data.name;
-    
+    console.log(response.data);
   } catch (error) {
     console.error('Une erreur s\'est produite lors de la récupération des données météo', error);
   }
@@ -46,7 +48,12 @@ async function getMeteo() {
       <div class="	h-72 mr-10 ml-10   duration-500	bg-neutral-800 p-16 card rounded-xl	 md:w-[32rem] flex flex-col justify-center items-center gap-5">
         <h1 class="text-white text-5xl md:text-7xl  whitespace-normal text-center	">{{ nomVille }}</h1>
         <p class="text-white text-5xl">{{ temp }}</p>
-        <div class="flex gap-6 mt-5"> 
+      </div>
+      <div class="flex flex-col items-center gap-y-10 md:flex-row">
+
+      <div class="	h-[5rem] mr-10 ml-10   duration-500	bg-neutral-800 p-16 card rounded-xl	 w-[18rem] flex flex-col justify-center items-center gap-5">
+
+        <div class="flex gap-6 mt-2"> 
           <p>
           <svg
             class="text-white"
@@ -84,11 +91,19 @@ async function getMeteo() {
           </p>
         </p>
         </div>
+        <div>
+          <p class="text-white text-center">
+            Humidité : {{ humidity }} %
+          </p>
+        </div>
+
       </div>
-      <div class="bg-neutral-800 p-16 card rounded-xl	 md:w-96 h-10 flex flex-col justify-center items-center gap-1">
+      <div class="bg-neutral-800 p-16 card rounded-xl	 w-[18rem] h-10 flex flex-col justify-center items-center gap-1">
         <img :src="icon" alt="Icone météo" class="">
         <p class="text-white text-2xl">{{ description }}</p>
       </div>
+    </div>
+
     </div>
   </div>
 </template>
