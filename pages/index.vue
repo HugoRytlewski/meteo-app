@@ -50,61 +50,75 @@ async function getMeteo() {
         <p class="text-white text-5xl">{{ temp }}</p>
       </div>
       <div class="flex flex-col items-center gap-y-10 md:flex-row">
-
-      <div class="	h-[5rem] mr-10 ml-10   duration-500	bg-neutral-800 p-16 card rounded-xl	 w-[18rem] flex flex-col justify-center items-center gap-5">
-
-        <div class="flex gap-6 mt-2"> 
-          <p>
-          <svg
-            class="text-white"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.0001 3.67157L13.0001 3.67157L13.0001 16.4999L16.2426 13.2574L17.6568 14.6716L12 20.3284L6.34314 14.6716L7.75735 13.2574L11.0001 16.5001L11.0001 3.67157Z"
-              fill="currentColor"
-            />
-          </svg>
-          <p class="text-white text-center">
-            {{ mintemp }}
-          </p>
-        </p>
-        <p>
-          <svg
-            class="text-white"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M17.6568 8.96219L16.2393 10.3731L12.9843 7.10285L12.9706 20.7079L10.9706 20.7059L10.9843 7.13806L7.75404 10.3532L6.34314 8.93572L12.0132 3.29211L17.6568 8.96219Z"
-              fill="currentColor"
-            />
-          </svg>
-          <p class="text-white text-center">
-            {{ maxtemp }}
-          </p>
-        </p>
-        </div>
+        <div class="	h-[5rem] mr-10 ml-10   duration-500	bg-neutral-800 p-16 card rounded-xl	 w-[18rem] flex flex-col justify-center items-center gap-5">
+          <div class="flex gap-6 mt-2"> 
+            <p>
+              <svg
+                class="text-white"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.0001 3.67157L13.0001 3.67157L13.0001 16.4999L16.2426 13.2574L17.6568 14.6716L12 20.3284L6.34314 14.6716L7.75735 13.2574L11.0001 16.5001L11.0001 3.67157Z"
+                  fill="currentColor"
+                />
+              </svg>
+              <p class="text-white text-center">
+                {{ mintemp }}
+              </p>
+            </p>
+            <p>
+              <svg
+                class="text-white"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.6568 8.96219L16.2393 10.3731L12.9843 7.10285L12.9706 20.7079L10.9706 20.7059L10.9843 7.13806L7.75404 10.3532L6.34314 8.93572L12.0132 3.29211L17.6568 8.96219Z"
+                  fill="currentColor"
+                />
+              </svg>
+              <p class="text-white text-center">
+                {{ maxtemp }}
+              </p>
+            </p>
+          </div>
         <div>
-          <p class="text-white text-center">
-            Humidité : {{ humidity }} %
-          </p>
+          <div class="flex">
+            <p class="text-white text-center">
+              {{ humidity }} %
+            </p>
+            <svg
+              class="text-blue-400 ml-2"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6.34315 19.5208C3.21895 16.3966 3.21895 11.3312 6.34315 8.20705L12 2.5502L17.6569 8.20705C20.781 11.3312 20.781 16.3966 17.6569 19.5208C14.5327 22.645 9.46734 22.645 6.34315 19.5208Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          
         </div>
-
       </div>
       <div class="bg-neutral-800 p-16 card rounded-xl	 w-[18rem] h-10 flex flex-col justify-center items-center gap-1">
         <img :src="icon" alt="Icone météo" class="">
         <p class="text-white text-2xl">{{ description }}</p>
       </div>
     </div>
-
-    </div>
+  </div>
   </div>
 </template>
 
