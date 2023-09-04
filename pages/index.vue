@@ -116,7 +116,7 @@ async function getMeteo() {
             </div>
           </div>
         </div>
-        <div class="bg-neutral-800 p-16 card rounded-xl w-[18rem] h-10 flex flex-col justify-center items-center gap-1">
+        <div class="bg-neutral-800 p-16 card rounded-xl w-[18rem] h-10 flex flex-col justify-center items-center ">
           <img :src="icon" alt="Icone météo" class="">
           <p class="text-white text-center text-2xl">{{ description }}</p>
         </div>
