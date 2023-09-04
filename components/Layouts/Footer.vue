@@ -1,5 +1,5 @@
 <template> 
-    <footer class="bg-neutral-900 xl:w-[90rem] mt-30 translate-y-24 rounded-xl m-4 ">
+    <footer class="bg-neutral-900 xl:w-[80rem] mt-30 translate-y-24 rounded-xl m-4 ">
         <div class="w-screen-xl items-center p-4 flex flex-col xl:flex-row xl:justify-between">
             <span class="text-xl text-white sm:text-center ">© 2023 
                 <a class="">Météo Hugo, Tous droits réservés</a>
