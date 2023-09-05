@@ -52,7 +52,7 @@ async function getMeteo() {
           class="border border-white border-4 p-4 bg-neutral-800 text-white"
           @click="getMeteo"
         >
-          Validerre
+          Valider
         </button>
       </div>
       <div class="h-72 mr-10 ml-10 duration-500 bg-neutral-800 p-16 card rounded-xl md:w-[32rem] flex flex-col justify-center items-center gap-5">
