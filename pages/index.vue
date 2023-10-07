@@ -131,7 +131,7 @@ async function getMeteo() {
       <div class="bg-neutral-900 text-white p-4 h-full md:h-96 md:w-96 flex justify-center gap-6 flex-col items-center rounded-xl shadow-md">
         <img class="w-40" src="~/assets/img/error.gif" alt="">
         <p class="text-xl text-center">La ville saisie n'a pas été trouvée ou est incorrecte</p>
-        <button @click="isSHOWmodal = false" class="bg-white rounded-xl text-black h-10 w-28 text-md">D'accord !</button>
+        <button @keyup.enter="isSHOWmodal = false" @click="isSHOWmodal = false" class="bg-white rounded-xl text-black h-10 w-28 text-md">D'accord !</button>
       </div>
     </div>
   </Transition>
