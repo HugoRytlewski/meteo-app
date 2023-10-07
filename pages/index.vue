@@ -26,6 +26,7 @@ async function getMeteo() {
     mintemp.value = (parseInt(response.data.main.temp_min))+ '°C' ;
     maxtemp.value = (parseInt(response.data.main.temp_max))+ '°C' ;
     description.value = response.data.weather[0].description;
+    console.log(response.data);
     humidity.value = response.data.main.humidity;
     icon.value = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
     nomVille.value = response.data.name;
