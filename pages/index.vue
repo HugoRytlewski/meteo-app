@@ -1,17 +1,17 @@
-<script setup >
-import axios from 'axios';
-import { ref, onMounted } from 'vue';
-import Footer from '../components/Layouts/Footer.vue';
+<script setup>
+import axios from "axios";
+import { ref, onMounted } from "vue";
+import Footer from "../components/Layouts/Footer.vue";
 
-const apiKey = '1c014d7470bc87a0ac57d62cc0cf852b';
-const ville = ref('Limoges');
-const nomVille = ref('');
-const temp = ref('');
-const description = ref('');
-const icon = ref('');
-const maxtemp = ref('');
-const mintemp = ref('');
-const humidity = ref('');
+const apiKey = "1c014d7470bc87a0ac57d62cc0cf852b";
+const ville = ref("Limoges");
+const nomVille = ref("");
+const temp = ref("");
+const description = ref("");
+const icon = ref("");
+const maxtemp = ref("");
+const mintemp = ref("");
+const humidity = ref("");
 const isSHOWmodal = ref(false);
 
 onMounted(() => {
@@ -22,9 +22,9 @@ async function getMeteo() {
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${ville.value}&units=metric&lang=fr&appid=${apiKey}`;
   try {
     const response = await axios.get(apiUrl);
-    temp.value = (parseInt(response.data.main.temp)) + '°C';
-    mintemp.value = (parseInt(response.data.main.temp_min))+ '°C' ;
-    maxtemp.value = (parseInt(response.data.main.temp_max))+ '°C' ;
+    temp.value = parseInt(response.data.main.temp) + "°C";
+    mintemp.value = parseInt(response.data.main.temp_min) + "°C";
+    maxtemp.value = parseInt(response.data.main.temp_max) + "°C";
     description.value = response.data.weather[0].description;
     console.log(response.data);
     humidity.value = response.data.main.humidity;
@@ -32,109 +32,130 @@ async function getMeteo() {
     nomVille.value = response.data.name;
   } catch (error) {
     isSHOWmodal.value = true;
-    ville.value = '';
-    console.error('Une erreur s\'est produite lors de la récupération des données météo', error);
+    ville.value = "";
+    console.error(
+      "Une erreur s'est produite lors de la récupération des données météo",
+      error
+    );
   }
 }
 </script>
 
 <template>
-  <div class="md:p-0 md:flex md:items-center min-h-screen md:justify-center">
-    <div class="flex flex-col items-center mt-10 gap-10">
-      <div class="flex items-center">
-        <input
-          v-model="ville"
-          type="text"
-          placeholder="Entrez votre ville"
-          @keyup.enter="getMeteo"
-          class="border border-white border-4 p-4 md:w-80 text-center"
-        >
-        <button
-          class="border border-white border-4 p-4 bg-neutral-800 text-white"
-          @click="getMeteo"
-        >
-          Valider
-        </button>
-      </div>
-      <div class="h-72 mr-10 ml-10 duration-500 bg-neutral-800 p-16 card rounded-xl md:w-[32rem] flex flex-col justify-center items-center gap-5">
-        <h1 class="text-white text-5xl md:text-7xl whitespace-normal text-center">{{ nomVille }}</h1>
-        <p class="text-white text-5xl">{{ temp }}</p>
-      </div>
-      <div class="flex flex-col items-center gap-y-10 md:flex-row">
-        <div class="h-[5rem] mr-10 ml-10 duration-500 bg-neutral-800 p-16 card rounded-xl w-[18rem] flex flex-col justify-center items-center gap-5">
-          <div class="flex gap-6 mt-2">
-            <p>
+  <div class="tkt flex items-center justify-center h-[106vh]">
+    <div class="flex flex-col items-center justify-center gap-10">
+      <div
+        class="color flex justify-center md:h-[40rem] h-[38rem] w-[22rem] overflow-hidden md:w-[30rem]"
+      >
+        <div class="flex flex-col items-center mt-10">
+          <div class="flex">
+            <input
+              v-model="ville"
+              type="text"
+              placeholder="Entrez votre ville"
+              @keyup.enter="getMeteo"
+              class="h-14 rounded-l-[8px] border-white border-4 p-4 md:w-80 text-center"
+            />
+            <button
+              class="flex items-center justify-center rounded-r-[8px] h-14 w-14 bg-btn text-white"
+              @click="getMeteo"
+            >
               <svg
-                class="text-white"
-                width="24"
-                height="24"
+                class="fill-white h-8"
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+                stroke-linejoin="round"
+                stroke-miterlimit="2"
                 viewBox="0 0 24 24"
-                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M11.0001 3.67157L13.0001 3.67157L13.0001 16.4999L16.2426 13.2574L17.6568 14.6716L12 20.3284L6.34314 14.6716L7.75735 13.2574L11.0001 16.5001L11.0001 3.67157Z"
-                  fill="currentColor"
+                  d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
+                  fill-rule="nonzero"
                 />
               </svg>
-              <p class="text-white text-center">{{ mintemp }}</p>
-            </p>
-            <p>
-              <svg
-                class="text-white"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.6568 8.96219L16.2393 10.3731L12.9843 7.10285L12.9706 20.7079L10.9706 20.7059L10.9843 7.13806L7.75404 10.3532L6.34314 8.93572L12.0132 3.29211L17.6568 8.96219Z"
-                  fill="currentColor"
-                />
-              </svg>
-              <p class="text-white text-center">{{ maxtemp }}</p>
-            </p>
+            </button>
           </div>
+
           <div>
-            <div class="flex">
-              <p class="text-white text-center">{{ humidity }} %</p>
-              <svg
-                class="text-blue-400 ml-2"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <img class="md:h-64 z-10" src="../assets/img/cloud.png" alt="" />
+            <h1 class="z-0 teext text-center translate-y-[-100px]">
+              {{ nomVille }}
+            </h1>
+          </div>
+
+          <div
+            class="h-52 flex justify-center text-white text-5xl font-bold items-center w-72 md:w-96 mt-[-3.5rem] colo-bg"
+          >
+            <p class="">{{ temp }}</p>
+            <img :src="icon" alt="Icone météo" class="" />
+          </div>
+        </div>
+        
+      </div>
+      <div class="fixed bottom-0 relative opacity-40">
+            <div class="md:ml-[66px]  flex flex-col justify-center text-center items-center gap-6 md:flex-row">
+              <span class="text-sm text-white sm:text-center"
+                >© 2023
+                <a class=""
+                  >Météo ,
+                  <a
+                    href="https://hugorytlewski.com"
+                    target="_blank"
+                    class="hover:underline"
+                    >Hugo Rytlewski</a
+                  >
+                  Tous droits réservés</a
+                >
+              </span>
+              <ul
+                class="flex flex-wrap items-center mt-3 text-sm font-medium text-white mr-0 gap-4 xl:mr-16 sm:mt-0"
               >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M6.34315 19.5208C3.21895 16.3966 3.21895 11.3312 6.34315 8.20705L12 2.5502L17.6569 8.20705C20.781 11.3312 20.781 16.3966 17.6569 19.5208C14.5327 22.645 9.46734 22.645 6.34315 19.5208Z"
-                  fill="currentColor"
-                />
-              </svg>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/hugo-rytlewski-b06841281/"
+                  >
+                    <img
+                      class="w-6"
+                      src="~/assets/img/linkdinwhite.png"
+                      alt=""
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/HugoRytlewski">
+                    <img
+                      class="w-6"
+                      src="~/assets/img/githubwhite.png"
+                      alt=""
+                    />
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-        <div class="bg-neutral-800 p-16 card rounded-xl w-[18rem] h-10 flex flex-col justify-center items-center ">
-          <img :src="icon" alt="Icone météo" class="">
-          <p class="text-white text-center text-2xl">{{ description }}</p>
-        </div>
-      </div>
-      <Footer />
-      <div class="h-20 md:h-0"></div>
     </div>
   </div>
   <Transition>
-    <div v-if="isSHOWmodal" class="fixed inset-0 flex items-center justify-center p-10">
-      <div class="bg-neutral-900 text-white p-4 h-full md:h-96 md:w-96 flex justify-center gap-6 flex-col items-center rounded-xl shadow-md">
-        <img class="w-40" src="~/assets/img/error.gif" alt="">
-        <p class="text-xl text-center">La ville saisie n'a pas été trouvée ou est incorrecte</p>
-        <button @keyup.enter="isSHOWmodal = false" @click="isSHOWmodal = false" class="bg-white rounded-xl text-black h-10 w-28 text-md">D'accord !</button>
+    <div
+      v-if="isSHOWmodal"
+      class="fixed inset-0 flex items-center justify-center p-10"
+    >
+      <div
+        class="bg-neutral-900 text-white p-4 h-full md:h-96 md:w-96 flex justify-center gap-6 flex-col items-center rounded-xl shadow-md"
+      >
+        <img class="w-40" src="~/assets/img/error.gif" alt="" />
+        <p class="text-xl text-center">
+          La ville saisie n'a pas été trouvée ou est incorrecte
+        </p>
+        <button
+          @keyup.enter="isSHOWmodal = false"
+          @click="isSHOWmodal = false"
+          class="bg-white rounded-xl text-black h-10 w-28 text-md"
+        >
+          D'accord !
+        </button>
       </div>
     </div>
   </Transition>
 </template>
-
-

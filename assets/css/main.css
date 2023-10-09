@@ -3,9 +3,17 @@
 @tailwind utilities;
 
 body {
-  background-color: #121212;
-
-
+background-color: black;
+overflow: hidden;
+}
+.tkt{
+  background: linear-gradient(180deg, #1674D2 0%, rgba(52, 145, 237, 0.16) 83.85%, rgba(9, 106, 203, 0.28) 99.99%, rgba(4, 102, 200, 0.00) 100%, rgba(45, 141, 237, 0.00) 100%, rgba(124, 130, 136, 0.08) 100%);
+}
+.color{
+  border-radius: 31px;
+border: 1px solid rgba(255, 255, 255, 0.26);
+background: rgba(206, 220, 255, 0.38);
+box-shadow: 0px 4px 43px 6px rgba(43, 45, 48, 0.25);
 }
 .card {
   
@@ -22,4 +30,27 @@ body {
 .v-leave-to {
   opacity: 0;
   transform: scale(40%);
+}
+.teext{
+  background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.08) 96.87%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+font-size: 74px;
+font-style: bold;
+font-weight: 800;
+line-height: normal;
+}
+.colo-bg{
+  border-radius: 18px;
+  background: rgba(169, 180, 209, 0.33);
+}
+
+.bg-btn{
+  background: #0353A4;
+  transition-duration: 400ms;
+}
+.bg-btn:hover{
+  background: #0353a4c8;
 }
